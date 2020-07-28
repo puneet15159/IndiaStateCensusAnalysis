@@ -9,16 +9,24 @@ namespace StateCensusAnalyser
     {
         public static int GetRecords(string filePath)
         {
-            int count = 0;
-            string[] data = File.ReadAllLines(filePath);
-            IEnumerable<string> records = data;
-            foreach(var element in records)
+            try
             {
-                count++;
+                int count = 0;
+                string[] data = File.ReadAllLines(filePath);
+                IEnumerable<string> records = data;
+                foreach (var element in records)
+                {
+                    count++;
+                }
+
+                return count - 1;
+
             }
+            catch (DirectoryNotFoundException e)
+            {
 
-            return count - 1;
-
+                throw new StateCensusAnalyserException("You have entered a wrong directory path");
+            }
         }
     }
 }
