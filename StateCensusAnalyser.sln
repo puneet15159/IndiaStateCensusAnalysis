@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateCensusAnalyser", "StateCensusAnalyser\StateCensusAnalyser.csproj", "{2DA3549B-A738-423B-9CF0-313E0AE4576F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCSVAnalyser", "TestCSVAnalyser\TestCSVAnalyser.csproj", "{ABDDC3F7-C341-4088-A424-C8CDAEE37B8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2DA3549B-A738-423B-9CF0-313E0AE4576F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DA3549B-A738-423B-9CF0-313E0AE4576F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DA3549B-A738-423B-9CF0-313E0AE4576F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDDC3F7-C341-4088-A424-C8CDAEE37B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDDC3F7-C341-4088-A424-C8CDAEE37B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDDC3F7-C341-4088-A424-C8CDAEE37B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDDC3F7-C341-4088-A424-C8CDAEE37B8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

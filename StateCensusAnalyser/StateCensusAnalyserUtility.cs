@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StateCensusAnalyser
 {
-    class StateCensusAnalyserUtility
+    public class StateCensusAnalyserUtility
     {
         private string filepath;
 
