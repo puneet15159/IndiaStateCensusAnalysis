@@ -32,7 +32,24 @@ namespace TestCSVAnalyser
             catch (StateCensusAnalyserException e)
             {
 
-                Assert.AreEqual(e.Message, "You have entered a wrong directory path");
+                Assert.AreEqual("You have entered a wrong directory path",e.Message);
+            }
+        }
+
+        [Test]
+        public void GivenCSVFile_WhenWrongFileName_ShouldThrowCustomException()
+        {
+            try
+            {
+                string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.txt";
+                int CSVRecords = CSVStateCensusRecords.GetRecords(filePath);
+                int records = StateCensusAnalyserUtility.GetStateCensusRecords(filePath);
+                Assert.AreEqual(CSVRecords, records);
+            }
+            catch (StateCensusAnalyserException e)
+            {
+
+                Assert.AreEqual("Name of the file is incorrect", e.Message);
             }
         }
     }

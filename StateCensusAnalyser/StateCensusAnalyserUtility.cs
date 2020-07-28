@@ -26,6 +26,11 @@ namespace StateCensusAnalyser
 
                 throw new StateCensusAnalyserException("You have entered a wrong directory path");
             }
+            catch (FileNotFoundException)
+            {
+
+                throw new StateCensusAnalyserException("Name of the file is incorrect");
+            }
         }
     }
 }
