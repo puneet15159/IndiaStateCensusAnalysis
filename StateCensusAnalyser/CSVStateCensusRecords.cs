@@ -34,8 +34,7 @@ namespace CSVAnalyser
 
         public static void GetDelimiters(string filePath)
         {
-            try
-            {
+            
                 string[] data = File.ReadAllLines(filePath);
                 IEnumerable<string> records = data;
                 foreach (var element in records)
@@ -45,19 +44,20 @@ namespace CSVAnalyser
                         throw new CSVException("Wrong delimiter");
                     }
                 }
+            
+        }
 
+        public static void GetFileHeaders(string filePath, string alternateFilePath)
+        {
 
-            }
-            catch (DirectoryNotFoundException e)
+            string[] data = File.ReadAllLines(filePath);
+            string[] alternateData = File.ReadAllLines(alternateFilePath);
+            IEnumerable<string> records = data;
+            if(data[0] != alternateData[0])
             {
-
-                throw new CSVException("You have entered a wrong directory path");
+                throw new CSVException("Headers do not match");
             }
-            catch (FileNotFoundException)
-            {
 
-                throw new CSVException("Name of the file is incorrect");
-            }
         }
     }
 }
