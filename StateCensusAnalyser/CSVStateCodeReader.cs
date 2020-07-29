@@ -35,6 +35,34 @@ namespace CSVAnalyser
             }
         }
 
+        public static void GetDelimiters(string filePath)
+        {
+
+            string[] data = File.ReadAllLines(filePath);
+            IEnumerable<string> records = data;
+            foreach (var element in records)
+            {
+                if (!element.Contains(","))
+                {
+                    throw new CSVException("Wrong delimiter");
+                }
+            }
+
+        }
+
+        public static void GetFileHeaders(string filePath, string alternateFilePath)
+        {
+
+            string[] data = File.ReadAllLines(filePath);
+            string[] alternateData = File.ReadAllLines(alternateFilePath);
+            IEnumerable<string> records = data;
+            if (data[0] != alternateData[0])
+            {
+                throw new CSVException("Headers do not match");
+            }
+
+        }
+
 
     }
 }

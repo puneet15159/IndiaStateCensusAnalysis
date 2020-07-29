@@ -14,7 +14,7 @@ namespace CSVAnalyser
             this.filepath = filepath;
         }
 
-        public static int GetStateCensusRecords(string filePath)
+        public static int GetStateCodeRecords(string filePath)
         {
             try
             {
