@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CSVAnalyser
 {
-    public class StateCensusAnalyserUtility
+    class StateCodeAnalyserUtility
     {
         private string filepath;
 
-        public StateCensusAnalyserUtility(string filepath)
+        public StateCodeAnalyserUtility(string filepath)
         {
             this.filepath = filepath;
         }
@@ -32,7 +32,5 @@ namespace CSVAnalyser
                 throw new CSVException("Name of the file is incorrect");
             }
         }
-
-       
     }
 }

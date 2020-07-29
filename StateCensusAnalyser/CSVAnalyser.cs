@@ -1,8 +1,9 @@
 ﻿using LumenWorks.Framework.IO.Csv;
 using System;
 using System.IO;
+using CSVAnalyser;
 
-namespace StateCensusAnalyser
+namespace CSVAnalyser
 {
     class Program
     {

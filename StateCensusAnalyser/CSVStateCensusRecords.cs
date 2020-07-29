@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
-namespace StateCensusAnalyser
+namespace CSVAnalyser
 {
     public class CSVStateCensusRecords
     {
@@ -25,12 +23,40 @@ namespace StateCensusAnalyser
             catch (DirectoryNotFoundException e)
             {
 
-                throw new StateCensusAnalyserException("You have entered a wrong directory path");
+                throw new CSVException("You have entered a wrong directory path");
             }
             catch (FileNotFoundException)
             {
 
-                throw new StateCensusAnalyserException("Name of the file is incorrect");
+                throw new CSVException("Name of the file is incorrect");
+            }
+        }
+
+        public static void GetDelimiters(string filePath)
+        {
+            try
+            {
+                string[] data = File.ReadAllLines(filePath);
+                IEnumerable<string> records = data;
+                foreach (var element in records)
+                {
+                    if (!element.Contains(","))
+                    {
+                        throw new CSVException("Wrong delimiter");
+                    }
+                }
+
+
+            }
+            catch (DirectoryNotFoundException e)
+            {
+
+                throw new CSVException("You have entered a wrong directory path");
+            }
+            catch (FileNotFoundException)
+            {
+
+                throw new CSVException("Name of the file is incorrect");
             }
         }
     }

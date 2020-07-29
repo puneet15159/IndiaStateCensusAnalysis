@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StateCensusAnalyser
+namespace CSVAnalyser
 {
     [Serializable]
-    public class StateCensusAnalyserException : Exception
+    public class CSVException : Exception
     {
         public ExceptionType type;
         public enum ExceptionType
@@ -13,7 +13,7 @@ namespace StateCensusAnalyser
             INVALID_MOOD
         }
 
-        public StateCensusAnalyserException(string message)
+        public CSVException(string message)
         : base(message) { }
     }
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using CSVAnalyser;
 
-namespace StateCensusAnalyser
+namespace CSVAnalyser
 {
     class CSVStateCodeReader
     {
@@ -25,12 +26,12 @@ namespace StateCensusAnalyser
             catch (DirectoryNotFoundException e)
             {
 
-                throw new StateCensusAnalyserException("You have entered a wrong directory path");
+                throw new CSVException("You have entered a wrong directory path");
             }
             catch (FileNotFoundException)
             {
 
-                throw new StateCensusAnalyserException("Name of the file is incorrect");
+                throw new CSVException("Name of the file is incorrect");
             }
         }
 
