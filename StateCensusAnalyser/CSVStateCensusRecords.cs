@@ -9,54 +9,55 @@ namespace CSVAnalyser
         {
             try
             {
-                int count = 0;
-                string[] data = File.ReadAllLines(filePath);
-                IEnumerable<string> records = data;
-                foreach (var element in records)
-                {
-                    count++;
-                }
+                CSVHelperMethods csvHelper = new CSVHelperMethods();
+                int count = csvHelper.GetRecords(filePath);
 
-                return count - 1;
+                return count;
 
             }
-            catch (DirectoryNotFoundException e)
+            catch (CSVException e)
             {
 
-                throw new CSVException("You have entered a wrong directory path");
+                throw new CSVException(e.Message,e.type);
             }
-            catch (FileNotFoundException)
-            {
-
-                throw new CSVException("Name of the file is incorrect");
-            }
+            
         }
 
         public static void GetDelimiters(string filePath)
         {
+
+            try
+            {
+                CSVHelperMethods csvHelper = new CSVHelperMethods();
+                csvHelper.GetDelimiters(filePath);
+
+            }
+            catch (CSVException e)
+            {
+
+                throw new CSVException(e.Message, e.type);
+            }
+
             
-                string[] data = File.ReadAllLines(filePath);
-                IEnumerable<string> records = data;
-                foreach (var element in records)
-                {
-                    if (!element.Contains(","))
-                    {
-                        throw new CSVException("Wrong delimiter");
-                    }
-                }
             
         }
 
         public static void GetFileHeaders(string filePath, string alternateFilePath)
         {
-
-            string[] data = File.ReadAllLines(filePath);
-            string[] alternateData = File.ReadAllLines(alternateFilePath);
-            IEnumerable<string> records = data;
-            if(data[0] != alternateData[0])
+            try
             {
-                throw new CSVException("Headers do not match");
+                
+                CSVHelperMethods csvHelper = new CSVHelperMethods();
+                csvHelper.GetFileHeaders(filePath,alternateFilePath);
+
             }
+            catch (CSVException e)
+            {
+
+                throw new CSVException(e.Message, e.type);
+            }
+
+            
 
         }
     }

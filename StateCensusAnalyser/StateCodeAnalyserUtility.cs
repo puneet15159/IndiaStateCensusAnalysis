@@ -18,18 +18,14 @@ namespace CSVAnalyser
         {
             try
             {
-                string[] recordCount = File.ReadAllLines(filePath);
-                return recordCount.Length - 1;
+                CSVHelperMethods csvHelper = new CSVHelperMethods();
+                return csvHelper.GetCSVRecords(filePath);
+
             }
-            catch (DirectoryNotFoundException)
+            catch (CSVException e)
             {
 
-                throw new CSVException("You have entered a wrong directory path");
-            }
-            catch (FileNotFoundException)
-            {
-
-                throw new CSVException("Name of the file is incorrect");
+                throw new CSVException(e.Message, e.type);
             }
         }
     }

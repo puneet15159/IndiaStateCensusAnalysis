@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StateCensusAnalyser\StateCensusAnalyser.csproj" />
+    <ProjectReference Include="..\StateCensusAnalyser\CSVAnalyser.csproj" />
   </ItemGroup>
 
 </Project>

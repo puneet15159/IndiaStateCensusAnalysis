@@ -16,21 +16,19 @@ namespace CSVAnalyser
 
         public static int GetStateCensusRecords(string filePath)
         {
+            
             try
             {
-                string[] recordCount = File.ReadAllLines(filePath);
-                return recordCount.Length - 1;
+                CSVHelperMethods csvHelper = new CSVHelperMethods();
+                return csvHelper.GetCSVRecords(filePath);
+                
             }
-            catch (DirectoryNotFoundException)
+            catch (CSVException e)
             {
 
-                throw new CSVException("You have entered a wrong directory path");
+                throw new CSVException(e.Message,e.type);
             }
-            catch (FileNotFoundException)
-            {
-
-                throw new CSVException("Name of the file is incorrect");
-            }
+            
         }
 
        

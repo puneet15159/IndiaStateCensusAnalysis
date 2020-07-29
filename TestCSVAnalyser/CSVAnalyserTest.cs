@@ -1,5 +1,7 @@
+
+using CSVAnalyser;
 using NUnit.Framework;
-using StateCensusAnalyser;
+
 
 namespace TestCSVAnalyser
 {
@@ -22,35 +24,43 @@ namespace TestCSVAnalyser
         [Test]
         public void GivenCSVFile_WhenWrongFilePath_ShouldThrowCustomException()
         {
-            try
-            {
-                string filePath = @"C:\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csv";
-                int CSVRecords = CSVStateCensusRecords.GetRecords(filePath);
-                int records = StateCensusAnalyserUtility.GetStateCensusRecords(filePath);
-                Assert.AreEqual(CSVRecords, records);
-            }
-            catch (StateCensusAnalyserException e)
-            {
-
-                Assert.AreEqual("You have entered a wrong directory path",e.Message);
-            }
+            string filePath = @"C:\punee\StateCensusAnalyser\IndiaStateCensusData.csv";
+            
+            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetRecords(filePath));
+            Assert.AreEqual(CSVException.ExceptionType.FILE_PATH_INCORRECT, exception.type);
+            
         }
 
         [Test]
         public void GivenCSVFile_WhenWrongFileName_ShouldThrowCustomException()
         {
-            try
-            {
-                string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.txt";
-                int CSVRecords = CSVStateCensusRecords.GetRecords(filePath);
-                int records = StateCensusAnalyserUtility.GetStateCensusRecords(filePath);
-                Assert.AreEqual(CSVRecords, records);
-            }
-            catch (StateCensusAnalyserException e)
-            {
+            string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csx";
+            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetRecords(filePath));
+            Assert.AreEqual(CSVException.ExceptionType.FILE_NAME_INCORRECT, exception.type);
 
-                Assert.AreEqual("Name of the file is incorrect", e.Message);
-            }
+        }
+
+        [Test]
+        public void GivenCSVFile_WhenWrongDelimiter_ShouldThrowCustomException()
+        {
+
+            string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csv";
+            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetDelimiters(filePath));
+            Assert.AreEqual(CSVException.ExceptionType.DELIMITER_INCORRECT,exception.type);
+
+
+        }
+
+        [Test]
+        public void GivenCSVFile_WhenHeadersDoNotMatch_ShouldThrowCustomException()
+        {
+
+            string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csv";
+            string alternateFilePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCode.csv";
+            CSVStateCensusRecords.GetFileHeaders(filePath,alternateFilePath);
+            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetFileHeaders(filePath, alternateFilePath));
+            Assert.AreEqual(CSVException.ExceptionType.HEADERS_DONOT_MATCH, exception.type);
+
         }
     }
 }
