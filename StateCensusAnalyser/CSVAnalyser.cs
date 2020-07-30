@@ -17,7 +17,7 @@ namespace CSVAnalyser
             string csvData = cSV.GetJSON(filePath);
             //Console.WriteLine(csvData);
 
-            string jsondTA=cSV.SortJSONDataAccordingToStateCode(csvData);
+            string jsondTA=cSV.SortJSONDataAccordingToStatePopulation(csvData);
             Console.WriteLine(jsondTA);
 
             int stateRecord=StateCensusAnalyserUtility.GetStateCensusRecords(filePath);

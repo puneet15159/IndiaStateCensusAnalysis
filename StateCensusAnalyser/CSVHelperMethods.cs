@@ -151,6 +151,22 @@ namespace CSVAnalyser
 
         }
 
+        public string SortJSONDataAccordingToStatePopulation(string jsonData)
+        {
+            var jObj = JsonConvert.DeserializeObject<List<RootObjectStateCensus>>(jsonData);
+            var props = jObj.ToList();
+
+
+            foreach (var prop in props.OrderByDescending(p => p.Population))
+            {
+                jObj.Add(prop);
+
+            }
+
+            return JsonConvert.SerializeObject(jObj);
+
+        }
+
 
         public void GetFileHeaders(string filePath, string alternateFilePath)
         {

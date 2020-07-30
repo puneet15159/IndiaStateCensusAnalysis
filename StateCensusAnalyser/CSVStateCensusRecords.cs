@@ -79,6 +79,12 @@ namespace CSVAnalyser
             return csvHelper.SortJSONDataAccordingToStateCode(data);
         }
 
+        public string SortJSONByStatePopulation(string data)
+        {
+            CSVHelperMethods csvHelper = new CSVHelperMethods();
+            return csvHelper.SortJSONDataAccordingToStatePopulation(data);
+        }
+
 
     }
 }
