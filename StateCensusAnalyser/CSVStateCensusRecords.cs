@@ -91,6 +91,11 @@ namespace CSVAnalyser
             return csvHelper.SortJSONDataAccordingToStatePopulationDensity(data);
         }
 
+        public string SortJSONByStateArea(string data)
+        {
+            CSVHelperMethods csvHelper = new CSVHelperMethods();
+            return csvHelper.SortJSONDataAccordingToStateArea(data);
+        }
 
     }
 }
