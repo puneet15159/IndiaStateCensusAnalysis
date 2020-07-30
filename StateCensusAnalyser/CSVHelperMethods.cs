@@ -12,12 +12,24 @@ using ServiceStack.Text;
 
 namespace CSVAnalyser
 {
-    public class RootObject
+    public class RootObjectStateCensus
     {
         public string State { get; set; }
         public string Population { get; set; }
         public string AreaInSqKm { get; set; }
         public string DensityPerSqKm { get; set; }
+
+        
+    }
+
+    public class RootObjectForStateCode
+    {
+        public string SrNo { get; set; }
+        public string StateName { get; set; }
+        public string TIN { get; set; }
+        public string StateCode { get; set; }
+
+        
     }
     public class CSVHelperMethods
     {
@@ -109,7 +121,7 @@ namespace CSVAnalyser
 
         public string SortJSONDataAccordingToState(string jsonData)
         {
-                var jObj = JsonConvert.DeserializeObject<List<RootObject>>(jsonData);        
+                var jObj = JsonConvert.DeserializeObject<List<RootObjectStateCensus>>(jsonData);        
                 var props = jObj.ToList();
              
 
@@ -123,7 +135,23 @@ namespace CSVAnalyser
            
         }
 
-     
+        public string SortJSONDataAccordingToStateCode(string jsonData)
+        {
+            var jObj = JsonConvert.DeserializeObject<List<RootObjectForStateCode>>(jsonData);
+            var props = jObj.ToList();
+
+
+            foreach (var prop in props.OrderByDescending(p => p.StateCode))
+            {
+                jObj.Add(prop);
+
+            }
+
+            return JsonConvert.SerializeObject(jObj);
+
+        }
+
+
         public void GetFileHeaders(string filePath, string alternateFilePath)
         {
             string[] data = File.ReadAllLines(filePath);
