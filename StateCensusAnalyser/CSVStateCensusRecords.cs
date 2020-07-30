@@ -85,6 +85,12 @@ namespace CSVAnalyser
             return csvHelper.SortJSONDataAccordingToStatePopulation(data);
         }
 
+        public string SortJSONByStatePopulationDensity(string data)
+        {
+            CSVHelperMethods csvHelper = new CSVHelperMethods();
+            return csvHelper.SortJSONDataAccordingToStatePopulationDensity(data);
+        }
+
 
     }
 }
