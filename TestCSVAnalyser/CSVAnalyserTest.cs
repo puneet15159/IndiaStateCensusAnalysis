@@ -55,9 +55,8 @@ namespace TestCSVAnalyser
         {
 
             string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csv";
-            string alternateFilePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCode.csv";
-            CSVStateCensusRecords.GetFileHeaders(filePath,alternateFilePath);
-            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetFileHeaders(filePath, alternateFilePath));
+            string otherFilePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCode.csv";
+            var exception = Assert.Throws<CSVException>(() => CSVStateCensusRecords.GetFileHeaders(filePath, otherFilePath));
             Assert.AreEqual(CSVException.ExceptionType.HEADERS_DONOT_MATCH, exception.type);
 
         }

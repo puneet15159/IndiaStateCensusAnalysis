@@ -14,12 +14,14 @@ namespace CSVAnalyser
                 int count = 0;
                 string[] data = File.ReadAllLines(filePath);
                 IEnumerable<string> records = data;
+                List<string> dataList = new List<string>();
                 foreach (var element in records)
                 {
                     count++;
+                    dataList.Add(element);
                 }
 
-                return count - 1;
+                return dataList.Count -1;
             }
             catch (DirectoryNotFoundException)
             {
