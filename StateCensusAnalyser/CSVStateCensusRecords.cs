@@ -57,8 +57,22 @@ namespace CSVAnalyser
                 throw new CSVException(e.Message, e.type);
             }
 
-            
+
 
         }
+
+        public string GetJSONFromCSV(string filePath)
+        {
+            CSVHelperMethods csvHelper = new CSVHelperMethods();
+            return csvHelper.GetJSON(filePath);
+        }
+
+        public string SortJSONByState(string data)
+        {
+            CSVHelperMethods csvHelper = new CSVHelperMethods();
+            return csvHelper.SortJSONDataAccordingToState(data);
+        }
+
+
     }
 }

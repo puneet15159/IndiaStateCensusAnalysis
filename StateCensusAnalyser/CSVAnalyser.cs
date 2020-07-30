@@ -3,15 +3,22 @@ using System;
 using System.IO;
 using CSVAnalyser;
 
+
 namespace CSVAnalyser
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCensusData.csv";
-            string otherFilePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\IndiaStateCode.csv";
+            string filePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\CSVData\IndiaStateCensusData.csv";
+            string otherFilePath = @"C:\Users\punee\source\repos\StateCensusAnalyser\StateCensusAnalyser\CSVData\IndiaStateCode.csv";
             int CSVRecords=CSVStateCensusRecords.GetRecords(filePath);
+            CSVHelperMethods cSV = new CSVHelperMethods();
+            string csvData = cSV.GetJSON(filePath);
+            //Console.WriteLine(csvData);
+
+            string jsondTA=cSV.SortJSONDataAccordingToState(csvData);
+            Console.WriteLine(jsondTA);
 
             int stateRecord=StateCensusAnalyserUtility.GetStateCensusRecords(filePath);
 

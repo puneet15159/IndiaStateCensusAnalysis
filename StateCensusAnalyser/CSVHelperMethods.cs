@@ -1,10 +1,24 @@
-﻿using System;
+﻿using ChoETL;
+using Nancy.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Globalization;
+using Newtonsoft.Json;
+using System.Linq;
+using Nancy.Json.Simple;
+using ServiceStack.Text;
 
 namespace CSVAnalyser
 {
+    public class RootObject
+    {
+        public string State { get; set; }
+        public string Population { get; set; }
+        public string AreaInSqKm { get; set; }
+        public string DensityPerSqKm { get; set; }
+    }
     public class CSVHelperMethods
     {
         public int GetRecords(string filePath)
@@ -54,6 +68,32 @@ namespace CSVAnalyser
             }
         }
 
+        public string GetJSON(string filePath)
+        {
+            
+            var csv = new List<string[]>();
+            var lines = File.ReadAllLines(filePath);
+
+            foreach (string line in lines)
+                csv.Add(line.Split(','));
+
+            var properties = lines[0].Split(',');
+
+            var listObjResult = new List<Dictionary<string, string>>();
+
+            for (int i = 1; i < lines.Length; i++)
+            {
+                var objResult = new Dictionary<string, string>();
+                for (int j = 0; j < properties.Length; j++)
+                    objResult.Add(properties[j], csv[i][j]);
+
+                listObjResult.Add(objResult);
+            }
+
+            return JsonConvert.SerializeObject(listObjResult);
+                   
+        }
+
         public void GetDelimiters(string filePath)
         {
             string[] data = File.ReadAllLines(filePath);
@@ -67,6 +107,23 @@ namespace CSVAnalyser
             }
         }
 
+        public string SortJSONDataAccordingToState(string jsonData)
+        {
+                var jObj = JsonConvert.DeserializeObject<List<RootObject>>(jsonData);        
+                var props = jObj.ToList();
+             
+
+                foreach (var prop in props.OrderByDescending(p => p.State))
+                {
+                    jObj.Add(prop);
+                    
+                }
+
+                return JsonConvert.SerializeObject(jObj);
+           
+        }
+
+     
         public void GetFileHeaders(string filePath, string alternateFilePath)
         {
             string[] data = File.ReadAllLines(filePath);

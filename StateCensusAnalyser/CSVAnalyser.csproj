@@ -6,11 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LumenWorksCsvReader" Version="4.0.0" />
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <PackageReference Include="ChoETL" Version="1.2.0.8" />
+    <PackageReference Include="ChoETL.JSON" Version="1.2.0.8" />
+    <PackageReference Include="ChoETL.JSON.NETStandard" Version="1.2.0.8" />
+    <PackageReference Include="ChoETL.NETStandard" Version="1.2.0.8" />
+    <PackageReference Include="LumenWorksCsvReader" Version="4.0.0" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="ServiceStack.Text" Version="5.9.0" />
+    <PackageReference Include="Vse.Web.Serialization.ControlledSerializationJsonConverter" Version="1.0.2" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
 
 </Project>
